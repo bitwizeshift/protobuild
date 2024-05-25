@@ -6,17 +6,25 @@ on:
     branches:
       - master
       - develop
+  workflow_call:
+    outputs:
+      coverage-artifact-id:
+        description: The artifact ID of the uploaded coverage
+        value: ${{ jobs.merge-coverage.outputs.coverage-artifact-id }}
+      coverage-artifact-url:
+        description: The URL of the uploaded coverage
+        value: ${{ jobs.merge-coverage.outputs.coverage-artifact-url }}
 
 jobs:
   build:
     name: Build
     strategy:
       matrix:
-        runner:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-    runs-on: ${{ matrix.runner }}
+        os:
+          - ubuntu
+          - windows
+          - macos
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
       - name: Check out code
@@ -39,10 +47,44 @@ jobs:
         run: go mod download
 
       - name: Run tests
-        run: go test ./...
+        run: |
+          mkdir -p dist
+          go test -coverprofile dist/${{ matrix.os }}-coverage.out ./...
 
       - name: Build
         run: go build -v ./main.go
+
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.os }}
+          path: dist/${{ matrix.os }}-coverage.out
+          retention-days: 1
+
+  merge-coverage:
+    name: Merge Coverage
+    needs: [build]
+    runs-on: ubuntu-latest
+    outputs:
+      coverage-artifact-id: ${{ steps.upload-coverage.outputs.artifact_id }}
+      coverage-artifact-url: ${{ steps.upload-coverage.outputs.artifact_url }}
+    steps:
+      - name: Download Coverage
+        uses: actions/download-artifact@v4
+        with:
+          pattern: coverage-*
+          path: dist
+          merge-multiple: true
+
+      # TODO merge coverage files into 1
+
+      - name: Upload Coverage
+        id: upload-coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: dist/*.out
+          retention-days: 7
 
   lint:
     name: Lint
