@@ -86,6 +86,22 @@ jobs:
           path: dist/*.out
           retention-days: 7
 
+  docs:
+    name: Lint Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - uses: DavidAnson/markdownlint-cli2-action@v16
+      with:
+
+        globs: |
+          README.md
+          docs/*.md
+          .github/*.md
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
