@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://json.schemastore.org/mkdocs-1.0.json
+site_name: Protobuild
+copyright: Matthew Rodusek 2024
+repo_name: protobuild
+repo_url: https://github.com/bitwizeshift/protobuild
+remote_branch: origin/master
+remote_name: origin
+site_author: Matthew Rodusek
+site_description: A tool for building protobuf files
+site_url: https://bitwizeshift.github.io/protobuild
+site_dir: dist
+docs_dir: docs
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - go
+    - protobuf
+    - markdown
+    - shell
+  features:
+    - search.suggest
+    - search.share
+plugins:
+  - search
+  - mermaid2
+
+nav:
+  - 🏠 Home: index.md
+  - 🛠️ Development:
+      - Commit standards: development/commit-standards.md
+      - 3rd-Party Licenses: development/licenses.md

@@ -51,9 +51,9 @@ jobs:
         run: |
           mkdir dist
           if [ "${{ inputs.manifest-type }}" = "csv" ]; then
-            go-licenses report ./... --template ./docs/licenses.md.tpl > dist/licenses.md
+            go-licenses report ./... > dist/licenses.csv
           elif [ "${{ inputs.manifest-type }}" = "markdown" ]; then
-            go-licenses markdown ./... > dist/licenses.md
+            go-licenses report ./... --template ./docs/licenses.md.tpl > dist/licenses.md
           else
             echo "Invalid manifest type: ${{ inputs.manifest-type }}"
             exit 1
