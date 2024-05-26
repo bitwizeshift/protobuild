@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Generate License Manifest
+
+on:
+  workflow_call:
+    inputs:
+      manifest-type:
+        description: The type of manifest to generate (markdown or csv)
+        required: true
+        type: string
+    outputs:
+      artifact-name:
+        description: The name of the uploaded coverage
+        value: license-manifest
+      artifact-id:
+        description: The artifact ID of the uploaded coverage
+        value: ${{ jobs.license.outputs.artifact-id }}
+      artifact-url:
+        description: The URL of the uploaded coverage
+        value: ${{ jobs.license.outputs.artifact-url }}
+
+jobs:
+  license:
+    name: License
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact_id }}
+      artifact-url: ${{ steps.upload.outputs.artifact_url }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.21
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Restore Go modules cache
+        uses: actions/cache@v4
+        with:
+          path: ~/go/pkg/mod
+          key: go-${{ runner.os }}-${{ hashFiles('go.mod') }}
+          restore-keys: |
+            go-${{ runner.os }}-
+
+      - name: Install go-licenses
+        run: go install github.com/google/go-licenses@latest
+
+      - name: Generate License Manifest (${{ inputs.manifest-type }})
+        run: |
+          mkdir dist
+          if [ "${{ inputs.manifest-type }}" = "csv" ]; then
+            go-licenses report ./... --template ./docs/licenses.md.tpl > dist/licenses.md
+          elif [ "${{ inputs.manifest-type }}" = "markdown" ]; then
+            go-licenses markdown ./... > dist/licenses.md
+          else
+            echo "Invalid manifest type: ${{ inputs.manifest-type }}"
+            exit 1
+          fi
+
+      - name: Upload License Manifest (${{ inputs.manifest-type}})
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: license-manifest
+          path: dist/*
+

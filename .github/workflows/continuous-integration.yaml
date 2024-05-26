@@ -29,3 +29,9 @@ jobs:
   lint:
     name: Lint
     uses: ./.github/workflows/lint.yaml
+
+  license:
+    name: License
+    uses: ./.github/workflows/license.yaml
+    with:
+      manifest-type: csv
