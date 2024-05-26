@@ -1,11 +1,7 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Presubmit
+name: Build and Test
 
 on:
-  push:
-    branches:
-      - master
-      - develop
   workflow_call:
     outputs:
       coverage-artifact-id:
@@ -25,6 +21,9 @@ jobs:
           - windows
           - macos
     runs-on: ${{ matrix.os }}-latest
+    permissions:
+      id-token: write
+      attestations: write
 
     steps:
       - name: Check out code
@@ -33,7 +32,7 @@ jobs:
       - name: Set up Go 1.21
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21
+          go-version-file: go.mod
 
       - name: Restore Go modules cache
         uses: actions/cache@v4
@@ -52,7 +51,23 @@ jobs:
           go test -coverprofile dist/${{ matrix.os }}-coverage.out ./...
 
       - name: Build
-        run: go build -v ./main.go
+        env:
+          CGO_ENABLED: 0
+        run: go build -v -o dist/protobuild ./main.go
+
+      - name: Attest Provenance
+        id: provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ matrix.os }}-protobuild
+          subject-path: dist/protobuild
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: protobuild-${{ matrix.os }}
+          path: dist/protobuild
+          retention-days: 1
 
       - name: Upload Coverage
         uses: actions/upload-artifact@v4
@@ -66,8 +81,8 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     outputs:
-      coverage-artifact-id: ${{ steps.upload-coverage.outputs.artifact_id }}
-      coverage-artifact-url: ${{ steps.upload-coverage.outputs.artifact_url }}
+      coverage-artifact-id: ${{ steps.upload-coverage.outputs.artifact-id }}
+      coverage-artifact-url: ${{ steps.upload-coverage.outputs.artifact-url }}
     steps:
       - name: Download Coverage
         uses: actions/download-artifact@v4
@@ -85,48 +100,3 @@ jobs:
           name: coverage
           path: dist/*.out
           retention-days: 7
-
-  docs:
-    name: Lint Documentation
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v4
-
-    - uses: DavidAnson/markdownlint-cli2-action@v16
-      with:
-
-        globs: |
-          README.md
-          docs/*.md
-          .github/*.md
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v4
-
-    - name: Set up Go 1.21
-      uses: actions/setup-go@v5
-      with:
-        go-version: 1.21
-
-    - name: Restore Go modules cache
-      uses: actions/cache@v4
-      with:
-        path: ~/go/pkg/mod
-        key: go-${{ runner.os }}-${{ hashFiles('go.mod') }}
-        restore-keys: |
-          go-${{ runner.os }}-
-
-    - name: Download dependencies
-      run: go mod download
-
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v6
-      with:
-        version: v1.58
