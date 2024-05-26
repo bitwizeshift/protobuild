@@ -26,9 +26,14 @@ theme:
 plugins:
   - search
   - mermaid2
+  - coverage:
+      page_name: coverage
+      html_report_dir: htmlcov
 
 nav:
   - 🏠 Home: index.md
   - 🛠️ Development:
       - Commit standards: development/commit-standards.md
+      # These two files are generated
       - 3rd-Party Licenses: development/licenses.md
+      - Coverage: coverage.md

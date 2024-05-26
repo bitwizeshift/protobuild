@@ -46,17 +46,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.coverage.outputs.coverage-artifact-name }}
-          path: dist
+          path: htmlcov
 
       - name: Install mkdocs
         run: |
           pip install mkdocs
           pip install mkdocs-mermaid2-plugin
+          pip install mkdocs-coverage
 
       - name: Generate coverage report
         run: |
-          go tool cover -html=dist/coverage.out -o dist/coverage.html
-          rm dist/coverage.out
+          go tool cover -html=htmlcov/coverage.out -o htmlcov/index.html
+          rm htmlcov/coverage.out
 
       - name: Generate Documentation
         run: mkdocs build
