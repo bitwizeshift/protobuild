@@ -4,6 +4,9 @@ name: Build and Test
 on:
   workflow_call:
     outputs:
+      coverage-artifact-name:
+        description: The artifact name of the uploaded coverage
+        value: coverage
       coverage-artifact-id:
         description: The artifact ID of the uploaded coverage
         value: ${{ jobs.merge-coverage.outputs.coverage-artifact-id }}
@@ -91,12 +94,19 @@ jobs:
           path: dist
           merge-multiple: true
 
-      # TODO merge coverage files into 1
+      - name: Install gcovmerge
+        run: go install github.com/wadey/gocovmerge@latest
+
+      - name: Merge Coverage
+        run: |
+          merge=$(go env GOPATH)/bin/gocovmerge
+          mkdir dist/merged
+          ${merge} dist/*-coverage.out > dist/merged/coverage.out
 
       - name: Upload Coverage
         id: upload-coverage
         uses: actions/upload-artifact@v4
         with:
           name: coverage
-          path: dist/*.out
+          path: dist/merged/coverage.out
           retention-days: 7
