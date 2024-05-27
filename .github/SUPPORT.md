@@ -1,4 +1,4 @@
-# Support Policy
+# Support
 
 ## Overview
 

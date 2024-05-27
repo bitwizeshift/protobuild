@@ -32,15 +32,22 @@ plugins:
 
 nav:
   - 🏠 Home: index.md
-  - 🛠️ Development:
+  - 📖 Go Docs: https://bitwizeshift.github.io/protobuild/pkg/github.com/bitwizeshift/protobuild/
+  - 🚀 Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+  - 👥 Contributing:
+      - Contributing Guidelines: contributing/CONTRIBUTING.md
+      - Code of Conduct: contributing/CODE_OF_CONDUCT.md
+      - Project Governance: contributing/GOVERNANCE.md
+      - Privacy Policy: contributing/PRIVACY.md
+      - Security Policy: contributing/SECURITY.md
+      - Support: contributing/SUPPORT.md
+  - 🛠️ Developer Docs:
       - Commit standards: development/commit-standards.md
       - 3rd-Party Licenses: development/licenses.md # Generated
       - Coverage: coverage.md # Generated
-  - 👥 Contributing:
-      - Code of Conduct: contributing/CODE_OF_CONDUCT.md
-      - Contributing Guidelines: contributing/CONTRIBUTING.md
-      - Privacy: contributing/PRIVACY.md
-      - Governance: contributing/GOVERNANCE.md
-      - Security: contributing/SECURITY.md
-      - Support: contributing/SUPPORT.md
-  - Go Docs: https://bitwizeshift.github.io/protobuild/pkg/github.com/bitwizeshift/protobuild/
+  - 📚 Other Resources:
+      - Protocol Buffers: https://protobuf.dev
+      - gRPC: https://grpc.io/
+      - Protoc installation: https://grpc.io/docs/protoc-installation/

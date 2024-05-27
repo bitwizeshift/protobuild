@@ -1,4 +1,4 @@
-# Private Policy
+# Privacy Policy
 
 `protobuild` does not log, collect, process, or share any personal or user data
 in any way.
