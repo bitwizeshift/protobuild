@@ -1,4 +1,4 @@
-# `protobuild`
+# ![`protobuild`](docs/src/logo.png)
 
 > [!NOTE]
 > `protobuild` is a **work-in-progress** tool, so some documentation may be
@@ -83,5 +83,5 @@ Below are some goals of this project:
 This project is **dual-licensed** under both MIT and Apache-2.0, at the
 user's choice.
 
-[protobuf]: https://protobuf.dev
-[`buf`]: https://buf.build/
+[protobuf]: https://protobuf.dev "Protocol Buffers"
+[`buf`]: https://buf.build/ "buf.build"

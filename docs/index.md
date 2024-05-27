@@ -1,4 +1,4 @@
-# Protobuild
+# ![`protobuf`](src/logo.png)
 
 **NOTE:** This article is a **stub** and needs to be improved!
 
