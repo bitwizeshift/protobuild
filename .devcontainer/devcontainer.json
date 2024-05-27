@@ -2,7 +2,18 @@
 	"image": "mcr.microsoft.com/devcontainers/go:1.21",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {}
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers-contrib/features/mkdocs:2": {},
+		"ghcr.io/guiyomh/features/goreleaser:0": {}
+	},
+	"postCreateCommand": {
+		"install-godoc": "go install golang.org/x/tools/cmd/godoc@latest",
+		"install-go-licenses": "go install github.com/google/go-licenses@latest",
+		"install-mkdocs-mermaid": "pip3 install --break-system-packages mkdocs-mermaid2-plugin",
+		"install-coverage": "pip3 install --break-system-packages mkdocs-coverage"
+	},
+	"postStartCommand": {
+		"fetch-go-mod": "go mod download"
 	},
 	"remoteUser": "vscode",
 	"customizations": {
