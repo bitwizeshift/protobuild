@@ -2,6 +2,8 @@
 
 # Source: https://gitlab.com/-/snippets/1977141
 
+set -euo pipefail
+
 function extract_module_name {
   # Extract module name
   sed -n -E 's/^\s*module\s+([[:graph:]]+)\s*$/\1/p'
