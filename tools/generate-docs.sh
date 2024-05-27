@@ -9,6 +9,9 @@ root=$(git rev-parse --show-toplevel)
   mkdir -p dist
   go-licenses report ./... --template "${root}/docs/licenses.md.tpl" > ${root}/docs/development/licenses.md
 
+  mkdir -p docs/contributing
+  cp .github/*.md docs/contributing
+
   mkdir -p htmlcov/html
   go test -coverprofile=htmlcov/coverage.out ./...
   go tool cover -html=htmlcov/coverage.out -o htmlcov/index.html

@@ -36,4 +36,11 @@ nav:
       - Commit standards: development/commit-standards.md
       - 3rd-Party Licenses: development/licenses.md # Generated
       - Coverage: coverage.md # Generated
+  - 👥 Contributing:
+      - Code of Conduct: contributing/CODE_OF_CONDUCT.md
+      - Contributing Guidelines: contributing/CONTRIBUTING.md
+      - Privacy: contributing/PRIVACY.md
+      - Governance: contributing/GOVERNANCE.md
+      - Security: contributing/SECURITY.md
+      - Support: contributing/SUPPORT.md
   - Go Docs: https://bitwizeshift.github.io/protobuild/pkg/github.com/bitwizeshift/protobuild/

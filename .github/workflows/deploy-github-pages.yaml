@@ -65,6 +65,11 @@ jobs:
           go tool cover -html=htmlcov/coverage.out -o htmlcov/index.html
           rm htmlcov/coverage.out
 
+      - name: Copy contribution docs
+        run: |
+          mkdir -p docs/contributing
+          cp -r .github/*.md docs/contributing/
+
       - name: Generate Documentation
         run: mkdocs build
 
