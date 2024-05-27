@@ -62,6 +62,14 @@ jobs:
       - name: Generate Documentation
         run: mkdocs build
 
+      - name: Generate godocs
+        env:
+          GO_DOC_HTML_OUTPUT: "${{ github.workspace }}/dist/godoc"
+        run: |
+          ./tools/generate-godocs.sh
+          mv dist/godoc/* "dist/"
+          rm -r "dist/godoc/"
+
       # Some of the doc generation steps above create the directories with
       # 0750 for permissions -- which is triggering warning annotations in the
       # workflow summaries. Manually converting this to 0755 helps to suppress
