@@ -48,8 +48,9 @@ jobs:
           name: ${{ needs.coverage.outputs.coverage-artifact-name }}
           path: htmlcov
 
-      - name: Install mkdocs
+      - name: Install dependencies
         run: |
+          go install golang.org/x/tools/cmd/godoc@latest
           pip install mkdocs
           pip install mkdocs-mermaid2-plugin
           pip install mkdocs-coverage
