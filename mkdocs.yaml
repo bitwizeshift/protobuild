@@ -47,6 +47,10 @@ nav:
       - Commit standards: development/commit-standards.md
       - 3rd-Party Licenses: development/licenses.md # Generated
       - Coverage: coverage.md # Generated
+  - 📜 Schemas:
+      - Registry Schema: schemas/registry.md
+      - Target Schema: schemas/target.md
+      - Workspace Schema: schemas/workspace.md
   - 📚 Other Resources:
       - Protocol Buffers: https://protobuf.dev
       - gRPC: https://grpc.io/

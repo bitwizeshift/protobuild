@@ -81,6 +81,9 @@ jobs:
           mv dist/godoc/* "dist/"
           rm -r "dist/godoc/"
 
+      - name: Copy jsonschema
+        run: cp -r jsonschema dist/jsonschema
+
       # Some of the doc generation steps above create the directories with
       # 0750 for permissions -- which is triggering warning annotations in the
       # workflow summaries. Manually converting this to 0755 helps to suppress
