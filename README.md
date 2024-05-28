@@ -1,5 +1,16 @@
 # ![`protobuild`](docs/src/logo.png)
 
+![Continuous Integration](https://img.shields.io/github/actions/workflow/status/bitwizeshift/protobuild/.github%2Fworkflows%2Fcontinuous-integration.yaml?logo=github)
+[![GitHub Release](https://img.shields.io/github/v/release/bitwizeshift/protobuild?include_prereleases)][github-releases]
+[![Gitter Channel](https://img.shields.io/badge/matrix-%23protobuild-darkcyan?logo=gitter)][gitter-channel]
+[![readthedocs](https://img.shields.io/badge/docs-readthedocs-blue?logo=readthedocs&logoColor=white)][docs]
+[![Godocs](https://img.shields.io/badge/docs-godocs-blue?logo=go&logoColor=white)][go-docs]
+
+[gitter-channel]: https://matrix.to/#/#protobuild:gitter.im
+[docs]: https://bitwizeshift.github.io/protobuild/
+[go-docs]: https://bitwizeshift.github.io/protobuild/pkg/github.com/bitwizeshift/protobuild
+[github-releases]: https://github.com/bitwizeshift/protobuild/releases
+
 > [!NOTE]
 > `protobuild` is a **work-in-progress** tool, so some documentation may be
 > out-of-date or may represent the desired future state of the tool until the
@@ -13,7 +24,13 @@ definitions.
 `protobuild` is **free** for teams and companies to use, and always will be.
 No subscription is required, like _some other tools_.
 
+> [!IMPORTANT]
+> This is not an official supported Google product.
+
 ## Teaser
+
+> [!NOTE]
+> This section contains output from content that is not yet on `master`.
 
 ```bash
 $ protobuild generate my-project
@@ -48,7 +65,7 @@ Generation successful
   * [📦 Installation](https://bitwizeshift.github.io/protobuild)
   * [🚀 Getting Started](https://bitwizeshift.github.io/protobuild)
   * [🙋‍♂️ Contributing](https://bitwizeshift.github.io/protobuild)
-* [⚙️ Go Docs](https://bitwizeshift.io/protobuf/pkg/github.com/bitwizeshift/protobuild)
+* [⚙️ Go Docs](https://bitwizeshift.github.io/protobuild/pkg/github.com/bitwizeshift/protobuild)
 * [⚖️ License](#license)
 
 ## Why?
