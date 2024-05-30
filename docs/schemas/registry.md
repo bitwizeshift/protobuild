@@ -6,8 +6,8 @@
 
 The schema for `protobuild` registry definitions are hosted and available below.
 
-* [`protobuild-registry-v1`]
+* [protobuild-registry-v1]
 
 This can be used for validating JSON, YAML, or TOML definitions of the registry.
 
-[`protobuild-registry-v1`]: https://bitwizeshift.github.io/protobuild/jsonschema/protobuild-registry-v1.json
+[protobuild-registry-v1]: https://bitwizeshift.github.io/protobuild/jsonschema/protobuild-registry-v1.json
