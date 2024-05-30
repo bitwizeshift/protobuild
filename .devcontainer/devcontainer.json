@@ -1,14 +1,14 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/go:1.21",
+	"image": "mcr.microsoft.com/devcontainers/go:1.22",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/mkdocs:2": {},
-		"ghcr.io/guiyomh/features/goreleaser:0": {}
+		"ghcr.io/devcontainers-contrib/features/mkdocs:2": {}
 	},
 	"postCreateCommand": {
 		"install-godoc": "go install golang.org/x/tools/cmd/godoc@latest",
 		"install-go-licenses": "go install github.com/google/go-licenses@latest",
+		"install-goreleaser": "go install github.com/goreleaser/goreleaser@latest",
 		"install-govulncheck": "go install golang.org/x/vuln/cmd/govulncheck@latest",
 		"install-mkdocs-mermaid": "pip3 install --break-system-packages mkdocs-mermaid2-plugin",
 		"install-coverage": "pip3 install --break-system-packages mkdocs-coverage"
@@ -35,6 +35,7 @@
 				"go.toolsManagement.checkForUpdates": "local",
 				"go.useLanguageServer": true,
 				"go.gopath": "/go",
+				"go.lintTool": "revive",
 				"editor.tabSize": 2,
 				"editor.formatOnSave": true,
 				"editor.insertSpaces": true,

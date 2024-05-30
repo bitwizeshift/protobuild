@@ -1,6 +1,6 @@
 module github.com/bitwizeshift/protobuild
 
-go 1.21.5
+go 1.22.0
 
 require (
 	github.com/google/go-cmp v0.6.0
