@@ -19,6 +19,12 @@ func String(s string) string {
 	return strings.Join(Lines(strings.Split(s, "\n")...), "\n")
 }
 
+// Strings dedents a slice of strings and returns the result as a single string
+// with the common prefix whitespace removed. This will also trim any leading
+func Strings(lines ...string) string {
+	return strings.Join(Lines(lines...), "\n")
+}
+
 // Lines dedents a slice of strings and returns the result as a slice of strings
 // with the common prefix whitespace removed. This will also trim any leading
 // and trailing whitespace lines.
