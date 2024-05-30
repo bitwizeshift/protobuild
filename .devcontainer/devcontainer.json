@@ -9,6 +9,7 @@
 	"postCreateCommand": {
 		"install-godoc": "go install golang.org/x/tools/cmd/godoc@latest",
 		"install-go-licenses": "go install github.com/google/go-licenses@latest",
+		"install-govulncheck": "go install golang.org/x/vuln/cmd/govulncheck@latest",
 		"install-mkdocs-mermaid": "pip3 install --break-system-packages mkdocs-mermaid2-plugin",
 		"install-coverage": "pip3 install --break-system-packages mkdocs-coverage"
 	},
