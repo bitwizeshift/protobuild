@@ -24,6 +24,9 @@ jobs:
         with:
           go-version: stable
 
+      - name: Install CyloneDX-Gomod
+        run: go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:

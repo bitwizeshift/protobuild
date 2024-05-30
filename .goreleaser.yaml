@@ -33,7 +33,7 @@ archives:
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{- end -}}
     format_overrides:
       - goos: windows
         format: zip
@@ -41,8 +41,25 @@ archives:
       - LICENSE-MIT
       - LICENSE-APACHE
 
+sboms:
+  - documents:
+      - |
+         {{- .ProjectName }}_
+         {{- .Version }}_
+         {{- title .Os }}_
+         {{- if eq .Arch "amd64" }}x86_64
+         {{- else if eq .Arch "386" }}i386
+         {{- else }}{{ .Arch }}{{ end }}
+         {{- if .Arm }}v{{ .Arm }}{{- end -}}{{- ".bom.json" -}}
+    artifacts: binary
+    cmd: cyclonedx-gomod
+    args: ["app", "-licenses", "-json", "-output", "$document", "-packages", "-files", "-licenses", "../"]
+    env:
+      - GOARCH={{ .Arch }}
+      - GOOS={{ .Os }}
+
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 changelog:
   sort: asc

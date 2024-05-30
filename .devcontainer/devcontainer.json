@@ -11,7 +11,8 @@
 		"install-goreleaser": "go install github.com/goreleaser/goreleaser@latest",
 		"install-govulncheck": "go install golang.org/x/vuln/cmd/govulncheck@latest",
 		"install-mkdocs-mermaid": "pip3 install --break-system-packages mkdocs-mermaid2-plugin",
-		"install-coverage": "pip3 install --break-system-packages mkdocs-coverage"
+		"install-coverage": "pip3 install --break-system-packages mkdocs-coverage",
+		"install-cyclonedx-gomod": "go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest"
 	},
 	"postStartCommand": {
 		"fetch-go-mod": "go mod download"
