@@ -7,12 +7,11 @@ on:
       - master
 
 permissions:
-  id-token: write
+  contents: write
   attestations: write
-  security-events: write
+  id-token: write
 
 jobs:
   release:
     name: Create Release Snapshot
     uses: ./.github/workflows/release.yaml
-
