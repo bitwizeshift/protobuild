@@ -36,14 +36,6 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Restore Go modules cache
-        uses: actions/cache@v4
-        with:
-          path: ~/go/pkg/mod
-          key: go-${{ runner.os }}-${{ hashFiles('go.mod') }}
-          restore-keys: |
-            go-${{ runner.os }}-
-
       - name: Install go-licenses
         run: go install github.com/google/go-licenses@latest
 
