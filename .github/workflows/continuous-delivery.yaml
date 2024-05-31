@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  attestations: write
+  security-events: write
+
+jobs:
+  release:
+    name: Create Release Snapshot
+    uses: ./.github/workflows/release.yaml
+

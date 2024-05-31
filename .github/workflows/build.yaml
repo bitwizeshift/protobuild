@@ -50,20 +50,6 @@ jobs:
           CGO_ENABLED: 0
         run: go build -v -o dist/protobuild ./main.go
 
-      - name: Attest Provenance
-        id: provenance
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: ${{ matrix.os }}-protobuild
-          subject-path: dist/protobuild
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: protobuild-${{ matrix.os }}
-          path: dist/protobuild
-          retention-days: 1
-
       - name: Upload Coverage
         uses: actions/upload-artifact@v4
         with:
