@@ -11,7 +11,7 @@ import (
 	"text/template"
 
 	"github.com/bitwizeshift/protobuild/internal/ansi"
-	"github.com/bitwizeshift/protobuild/internal/flagset"
+	"github.com/bitwizeshift/protobuild/internal/cli/flagset"
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )
