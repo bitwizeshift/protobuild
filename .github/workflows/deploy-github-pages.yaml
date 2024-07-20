@@ -93,6 +93,9 @@ jobs:
           find ./dist -type d -exec chmod 0755 {} \;
           find ./dist -type f -name '.lock' -delete
 
+      - name: Create CNAME record
+        run: echo "protobuild.dev" > dist/CNAME
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
