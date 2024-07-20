@@ -3,7 +3,6 @@ package glob
 import (
 	"os"
 	"path/filepath"
-	"unsafe"
 )
 
 // Patterns represents a list of patterns that can be used to match against a
@@ -19,10 +18,6 @@ func NewPatterns(patterns ...string) Patterns {
 		result[i] = Pattern(pattern)
 	}
 	return result
-}
-
-func transmutePatterns(p []string) Patterns {
-	return *(*Patterns)(unsafe.Pointer(&p))
 }
 
 // Match is a function that will match a given pattern against a name. This
